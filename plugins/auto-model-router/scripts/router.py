@@ -156,6 +156,9 @@ def route(prompt: str, cfg: dict, mode: str, session: dict | None) -> dict:
         if TIERS.index(bumped) > TIERS.index(tier):
             tier, why = bumped, "escalated"
             s["reasons"].insert(0, f"retry after {last} -> escalate")
+    floor = cfg.get("start_tier", "haiku")
+    if TIERS.index(tier) < TIERS.index(floor):
+        tier = floor
     return {"tier": cap(tier, cfg), "score": s["score"], "reasons": s["reasons"], "why": why}
 
 def current_session_model(transcript_path: str | None, session: dict, cfg: dict) -> str:
@@ -230,7 +233,8 @@ def hook_session() -> None:
         state.setdefault("sessions", {}).setdefault(sid, {})["model"] = model
         save_state(state)
     if mode == "off": return
-    policy = (f"[router mode={mode}] Follow [router: tier=...] notes by delegating (foreground) to router-haiku/sonnet/opus/fable. "
+    policy = (f"[router mode={mode}] Every task starts on Haiku (router-haiku). Escalate one tier only when a note says [router: tier=...] or a helper replies ESCALATE. "
+              "Follow [router: tier=...] notes by delegating (foreground) to router-haiku/sonnet/opus/fable. "
               "No note = solve directly. On 'ESCALATE: <tier>', re-delegate to router-<tier>. Prefer Grep/line-range Read; keep replies concise.")
     print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": policy}}))
 
