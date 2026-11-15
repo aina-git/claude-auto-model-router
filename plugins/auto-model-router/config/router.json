@@ -1,0 +1,22 @@
+{
+  "tiers": {
+    "haiku":  { "model": "claude-haiku-5-5",  "agent": "router-haiku",  "effort": "low" },
+    "sonnet": { "model": "claude-sonnet-5-5", "agent": "router-sonnet", "effort": "medium" },
+    "opus":   { "model": "claude-opus-5-5",   "agent": "router-opus",   "effort": "high" },
+    "fable":  { "model": "claude-fable-5-2",  "agent": "router-fable",  "effort": "high" }
+  },
+  "thresholds": { "sonnet": 22, "opus": 45, "fable": 72 },
+  "mode_shift": { "eco": 5, "balanced": 0, "quality": -10 },
+  "default_mode": "eco",
+  "max_tier": "fable",
+  "assumed_session_model": "claude-haiku-5-5",
+  "show_badge": true,
+  "sticky_minutes": 30,
+  "pricing_per_mtok": {
+    "haiku":  { "input": 0.10, "output": 0.50, "input_over_100k": 0.50 },
+    "sonnet": { "input": 2.00, "output": 10.00 },
+    "opus":   { "input": 4.00, "output": 20.00 },
+    "fable":  { "input": 8.00, "output": 40.00 }
+  },
+  "cache_multipliers": { "read": 0.1, "write_5m": 1.25, "write_1h": 2.0 }
+}

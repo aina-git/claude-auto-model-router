@@ -1,0 +1,13 @@
+{
+  "name": "abiodun-tools",
+  "description": "Token-saving automatic model routing for Claude Code.",
+  "owner": { "name": "Abiodun Aina" },
+  "plugins": [
+    {
+      "name": "auto-model-router",
+      "source": "./plugins/auto-model-router",
+      "description": "Auto-select Haiku / Sonnet / Opus / Fable per task difficulty to save tokens.",
+      "version": "1.0.0"
+    }
+  ]
+}

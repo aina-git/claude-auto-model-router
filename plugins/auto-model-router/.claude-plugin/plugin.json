@@ -1,0 +1,8 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "auto-model-router",
+  "version": "1.0.0",
+  "description": "Auto-routes tasks to the cheapest capable Claude model (Haiku 5.5 -> Sonnet 5.5 -> Opus 5.5 -> Fable 5.2).",
+  "author": { "name": "Abiodun Aina" },
+  "license": "MIT"
+}
